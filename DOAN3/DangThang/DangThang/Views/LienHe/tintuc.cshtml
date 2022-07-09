@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "tintuc";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>Dang Thawngs | Tin Tuc</title>
+
+<div ng-controller="HomeCtrl">
+    <div ng-init="LoadTinTuc()"></div>
+    <div class="main" >
+        <div class="grid wide">
+            <div class="main__taskbar">
+                <div class="main__breadcrumb">
+                    <div class="breadcrumb__item">
+                        <a href="/Home/Index" class="breadcrumb__link">Trang chủ</a>
+                    </div>
+                    <div class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">Danh sách tin tức</a>
+                    </div>
+                </div>
+            </div>
+            <div class="list-new" ng-repeat="item in listTinTuc">
+                <div href="/LienHe/New" class="new-item">
+                    <a href="/LienHe/New" class="new-item__img" >
+                        <img src="{{item.Anh}}" alt="">
+                    </a>
+                    <div class="new-item__body">
+                        <a href="/LienHe/New" class="new-item__title">
+                           {{item.TieuDe}}
+
+                        </a>
+                        <p class="new-item__time"> Ngày đăng: {{item.NgayDang}}</p>
+                        <p class="new-item__description">Đối với người Việt Nam, sở hữu một ngôi nhà không chỉ là ước mơ mà còn là sự nỗ lực, cố gắng chăm chỉ lao động và tích lũy suốt một thời gian dài. Vì thế, nhà không đơn thuần là một tài sản giá trị mà còn gửi gắm ước mơ về một không gian sống có gu và mang cá tính của chính mình! Thấu hiểu những điều đó, Decor Việt mang tới dịch vụ decor nhà ở trọn gói, vừa giúp bạn hoàn thiện không gian sống mơ ước vừa giúp tối đa hóa không gian sử dụng giúp mang lại hiệu quả thẩm mỹ cao nhất và thể hiện dấu ấn cá nhân của gia chủ.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,145 @@
+﻿
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Views/Shared/_LayoutAdminSP.cshtml";
+}
+
+<h2></h2>
+
+<script src="~/Areas/Admin/AngularScipt/ProductAdd.js"></script>
+
+@**@
+
+@*<script src="~/Areas/Admin/AngularScipt/AdminSP.js"></script>*@
+
+
+<button class="btn btn-primary fa fa-plus" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-plus">Thêm Sản Phẩm</i></button>
+
+
+<div ng-app="DecorPhongApp" ng-controller="SanPhamCtrl">
+
+    <div ng-init="LoadLoaiSP()"></div>
+    <div class="card shadow mb-4">
+
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Danh sách sản phẩm</h6>
+        </div>
+        <div class="container-fluid">
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">LOẠI SẢN PHẨM</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+
+                        </div>
+                        <form novalidate name="frmLoaiSP" id="frmLoaiSP" class="form-horizontal row-border">
+                            <div class="modal-body">
+                                <div class="col-md-12">
+
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">Mã Sản Phẩm</label>
+                                        <div class="col-md-7"> <input type="text" id="idtenloai" class="form-control" name="nametenloai" ng-model="MaSP" /> </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">Tên Sản Phẩm</label>
+                                        <div class="col-md-7"> <input type="text" id="idSoSP" class="form-control" name="nameSoSP" ng-model="TenSP" /> </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-4 control-label" for="input17">Giá</label>
+                                        <div class="col-md-7"> <input type="text" id="idgv" class="form-control" name="namegvid" ng-model="Gia" /> </div>
+                                    </div>
+
+
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">Số lượng</label>
+                                    <div class="col-md-7"> <input type="text" id="idgv" class="form-control" name="namegvid" ng-model="Soluong" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-4 control-label" for="input17">ảnh</label>
+                                    <div class="col-md-7"> <input type="file" id="file" class="form-control" name="namegvid" ng-model="Anh" /> </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4"> </div>
+                                    <div class="col-md-7">
+                                        <span id="save" class="btn btn-success margin-right-btn" ng-click="AddSanPham()">
+                                            <i class="icon-save"></i> {{btntxt}}
+                                        </span>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer">
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+                <div class="input-group">
+                    <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
+                           aria-label="Search" aria-describedby="basic-addon2" ng-model="searchText">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button">
+                            <i class="fas fa-search fa-sm"></i>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+
+                                <th>Tên sản phẩm</th>
+                                <th>ảnh </th>
+                                <th>Gia</th>
+                                <th></th>
+                         
+                                <th>Chức năng</th>
+                            </tr>
+                        </thead>
+                        <tbody ng-repeat="item in listLoaiSP ">
+                            <tr>
+                                <td>{{$index+1}}</td>
+
+                                <td>{{item.TenSP}}</td>
+                                <td><img src="{{item.Anh}}" style="height:50px;width:50px"></td>
+                                <td>{{item.Gia}}</td>
+
+                                <td>{{item.Soluong}}</td>
+                                <td>
+                                    <span>
+                                        <span id="save" class="btn btn-danger margin-right-btn"
+                                              ng-click="Xoa(item)">
+                                            <i class="fas fa fa-trash"></i>
+                                        </span>
+                                    </span>
+                                    <span id="save" class="btn btn-primary margin-right-btn" ng-click="GetSPid(item.MaSP)" data-toggle="modal" data-target="#exampleModal"><i class="fas fa fa-edit"></i></span>
+
+                                </td>
+
+                            </tr>
+
+                        </tbody>
+
+                    </table>
+                    <dir-pagination-controls></dir-pagination-controls>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>

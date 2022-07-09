@@ -1,0 +1,233 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<title>DangThawngs | Trang Chủ</title>
+
+
+
+<div ng-controller="HomeCtrl">
+    <div ng-init="LoadData()"></div>
+
+    <div class="main__tabnine">
+        <div class="grid wide">
+            <!-- Tab items -->
+            <div class="tabs">
+                <div class="tab-item active">
+                    Bán Chạy
+                </div>
+                <div class="tab-item">
+                    Giá tốt
+                </div>
+                <div class="tab-item">
+                    Mới Nhập
+                </div>
+                <div class="line"></div>
+            </div>
+            <!-- Ban Chay -->
+            <div class="tab-content">
+                <div class="tab-pane active">
+                    <div class="row">
+                        <div class="col l-2-4 m-4 s-6" ng-repeat="item in listAllData | orderBy: '-Ma' | limitTo :20 :10 ">
+                            <div class="product">
+                                <div class="product__avt" style="background-image: url( {{item.Anh}});">
+                                </div>
+                                <div class="product__info">
+                                    <h3><a class="product__name" href="/SanPham/Chitiet/?MaSP={{item.MaSP}}">{{item.TenSP}}</a> </h3>
+                                    <div class="product__price">
+                                        <div class="price__old">
+                                            2.599.000 đ
+                                        </div>
+                                        <div class="price__new">{{item.Gia}}<span class="price__unit">đ</span></div>
+                                    </div>
+                                    <div class="product__sale">
+                                        <span class="product__sale-text">Giảm</span>
+                                        <span class="product__sale-percent">24%</span>
+                                    </div>
+                                </div>
+                                <a href="/SanPham/Chitiet/?MaSP={{item.MaSP}}" class="viewDetail">Xem chi tiết</a>
+                                <p class="addToCart" ng-click="addToCart(item)"> Thêm vào giỏ</p> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gia Tot-->
+                <div class="tab-pane">
+                    <div class="row">
+                        <div class="col l-2-4 m-4 s-6" ng-repeat="item in listAllData  | orderBy: '-Ma' | limitTo :13 :50">
+                            <div class="product">
+                                <div class="product__avt" style="background-image: url({{item.Anh}});">
+                                </div>
+                                <div class="product__info">
+                                    <h3><a class="product__name" href="/SanPham/Chitiet/?MaSP={{item.MaSP}}">{{item.TenSP}}</a> </h3>
+                                    <div class="product__price">
+                                        <div class="price__old">
+                                            2.599.000 đ
+                                        </div>
+                                        <div class="price__new">{{item.Gia}}<span class="price__unit">đ</span></div>
+                                    </div>
+                                    <div class="product__sale">
+                                        <span class="product__sale-text">Giảm</span>
+                                        <span class="product__sale-percent">24%</span>
+                                    </div>
+                                </div>
+                                <a href="/SanPham/Chitiet/?MaSP={{item.MaSP}}" class="viewDetail">Xem chi tiết</a>
+                                <p class="addToCart" ng-click="addToCart(item)"> Thêm vào giỏ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moi Nhap-->
+                <div class="tab-pane">
+                    <div class="row">
+                        <div class="col l-2-4 m-4 s-6" ng-repeat="item in listAllData | orderBy: '-Ma' | limitTo :17 :40">
+                            <div class="product">
+                                <div class="product__avt" style="background-image: url({{item.Anh}});">
+                                </div>
+                                <div class="product__info">
+                                    <h3><a class="product__name" href="/SanPham/Chitiet/?MaSP={{item.MaSP}}">{{item.TenSP}}</a> </h3>
+                                    <div class="product__price">
+                                        <div class="price__old">
+                                            1.999.000 đ
+                                        </div>
+                                        <div class="price__new">{{item.Gia}} <span class="price__unit">đ</span></div>
+                                    </div>
+                                    <div class="product__sale">
+                                        <span class="product__sale-text">Giảm</span>
+                                        <span class="product__sale-percent">24%</span>
+                                    </div>
+                                </div>
+                                <a href="/SanPham/Chitiet/?MaSP={{item.MaSP}}" class="viewDetail">Xem chi tiết</a>
+                                <a href="cart.html" class="addToCart" ng-click="addToCart(item)">Thêm vào giỏ</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- San Pham Noi Bat  -->
+
+        <div class="main__frame">
+            <div class="grid wide">
+                <h3 class="category__title">Dang Thawngs</h3>
+                <h3 class="category__heading">SẢN PHẨM NỔI BẬT</h3>
+                <div class="owl-carousel hight owl-theme">
+                    <div class="product"  ng-repeat="item in listAllData">
+                        <div class="product__avt" style="background-image: url({{item.Anh}});">
+                        </div>
+                        <div class="product__info">
+                            <h3 class="product__name">{{item.TenSP}}</h3>
+                            <div class="product__price">
+                                <div class="price__old">
+                                    2.599.000 đ
+                                </div>
+                                <div class="price__new">{{item.Gia}}<span class="price__unit">đ</span></div>
+                            </div>
+                            <div class="product__sale">
+                                <span class="product__sale-text">Giảm</span>
+                                <span class="product__sale-percent">23%</span>
+                            </div>
+                        </div>
+                        <a href="/SanPham/Chitiet/?MaSP={{item.MaSP}}" class="viewDetail">Xem chi tiết</a>
+                        <a class="addToCart" ng-click="addToCart(item)">Thêm vào giỏ</a>
+                    </div>
+   
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales Policy -->
+        <div class="main__policy">
+            <div class="row">
+                <div class="col l-3 m-6">
+                    <div class="policy bg-1">
+                        <img src="~/assets/img/policy/policy1.png" class="policy__img">
+                        <div class="policy__info">
+                            <h3 class="policy__title">GIAO HÀNG MIỄN PHÍ</h3>
+                            <p class="policy__description">Cho đơn hàng từ 300K</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-3 m-6">
+                    <div class="policy bg-2">
+                        <img src="~/assets/img/policy/policy2.png" class="policy__img">
+                        <div class="policy__info">
+                            <h3 class="policy__title">ĐỔI TRẢ HÀNG</h3>
+                            <p class="policy__description">Trong 3 ngày đầu tiên</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-3 m-6">
+                    <div class="policy bg-1">
+                        <img src="~/assets/img/policy/policy3.png" class="policy__img">
+                        <div class="policy__info">
+                            <h3 class="policy__title">HÀNG CHÍNH HÃNG</h3>
+                            <p class="policy__description">Cam kết chất lượng</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col l-3 m-6">
+                    <div class="policy bg-2">
+                        <img src="~/assets/img/policy/policy4.png" class="policy__img">
+                        <div class="policy__info">
+                            <h3 class="policy__title">TƯ VẤN 24/24</h3>
+                            <p class="policy__description">Giải đáp mọi thắc mắc</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- News -->
+        <div class="main__frame bg-3">
+            <div class="grid wide">
+                <h3 class="category__title">Dang Thawngs</h3>
+                <h3 class="category__heading">Tin Tức</h3>
+                <div class="owl-carousel news owl-theme">
+                    <a href="news.html" class="news">
+                        <div class="news__img">
+                            <img src="~/assets/img/news/news1.jpg" alt="">
+                        </div>
+                        <div class="news__body">
+                            <h3 class="news__body-title">SỬ DỤNG NỘI THẤT NHỎ GỌN, ĐA NĂNG</h3>
+                            <div class="new__body-date">13/11/2021</div>
+                            <p class="news__description">
+                                Một không gian chỉ thực sự đẹp nếu đồ vật bên trong có kích thước hài hòa với diện tích phòng.
+                                Phòng có diện tích eo hẹp mà bạn vẫn muốn đặt những nội thất lớn vào trong không chỉ gây mất cân bằng, giảm giá trị thẩm mỹ của căn phòng mà còn chiếm diện tích khiến căn phòng đã chật nay càng chật hơn. Do đó hãy ưu tiên chọn lựa những nội thất có thiết kế đơn giản, nhỏ gọn và sáng màu trong trường hợp này nhé.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="news.html" class="news">
+                        <div class="news__img">
+                            <img src="~/assets/img/news/news1.jpg" alt="">
+                        </div>
+                        <div class="news__body">
+                            <h3 class="news__body-title">Bố trí bàn làm việc</h3>
+                            <div class="new__body-date">09/11/2021</div>
+                            <p class="news__description">
+                                Phòng làm việc là không gian cần thiết của nhiều gia chủ. Tuy nhiên, những căn hộ ở các thành phố lớn thường có diện tích nhỏ, việc bày trí bàn làm việc trong phòng ngủ là một giải pháp lý tưởng. Khi decor phòng ngủ nhỏ, bạn nên chọn những chiếc bàn làm việc kích thước nhỏ gọn, có màu sắc trung tính phù hợp với gam màu chủ đạo của căn phòng.
+                            </p>
+                        </div>
+                    </a>
+                    <a href="news.html" class="news">
+                        <div class="news__img">
+                            <img src="~/assets/img/news/news1.jpg" alt="">
+                        </div>
+                        <div class="news__body">
+                            <h3 class="news__body-title">Sử dụng kệ treo tường</h3>
+                            <div class="new__body-date">06/11/2021</div>
+                            <p class="news__description">
+                                Kệ treo tường là đồ decor phòng ngủ đa năng thường được sử dụng khi decor phòng ngủ nhỏ. Kệ treo tường không chỉ giúp tối ưu diện tích không gian mà còn giúp phòng ngủ thêm tinh tế và hiện đại. Ngoài ra, bạn có thể tận dụng kệ để trưng bày các phụ kiện trang trí, sách báo, lọ hoa nhỏ… vô cùng tiện lợi. Đây cũng là một trong những cách trang trí phòng ngủ đơn giản mà đẹp được nhiều người ưa chuộng. Các phụ kiện kệ gỗ, hộc tủ được thiết kế treo tường hoặc tích hợp giường thông minh và ngăn kéo phía dưới sẽ giúp bạn giải phóng không gian khi trang trí phòng ngủ nhỏ.
+                            </p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        </div>
+

@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewBag.Title = "Trang2";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<title>Dang Thawngs | Trang2</title>
+
+<div ng-controller="HomeCtrl">
+    <div ng-init="LoadData()"></div>
+    <div class="main">
+        <div class="grid wide">
+            <div class="main__taskbar">
+                <div class="main__breadcrumb">
+                    <div class="breadcrumb__item">
+                        <a href="/Home/Index" class="breadcrumb__link">Trang chủ</a>
+                    </div>
+                    <div class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">Cửa hàng</a>
+                    </div>
+                    <div class="breadcrumb__item">
+                        <a href="#" class="breadcrumb__link">Sản Phẩm Trang Trí</a>
+                    </div>
+                </div>
+                <div class="main__sort">
+                    <h3 class="sort__title">
+                        Hiển thị kết quả theo
+                    </h3>
+                    <select class="sort__select">
+                        name="" id="">
+                        <option value="1">Thứ tự mặc định</option>
+                        <option value="2">Mức độ phổ biến</option>
+                        <option value="3">Điểm đánh giá</option>
+                        <option value="4">Mới cập nhật</option>
+                        <option value="5">Giá : Cao đến thấp</option>
+                        <option value="6">Giá Thấp đến cao</option>
+                    </select>
+                </div>
+            </div>
+            <div class="productList">
+                <div class="listProduct">
+                    <div class="row">
+                        <div class="col l-2-4 m-4 s-6" ng-repeat="item in listAllData | orderBy: '-Ma' | limitTo :20 :40 ">
+                            <div class="product">
+                                <div class="product__avt" style="background-image: url({{item.Anh}})">
+                                </div>
+                                <div class="product__info">
+                                    <h3 class="product__name">{{item.TenSP}}</h3>
+                                    <div class="product__price">
+                                        <div class="price__old">3.400.000 <span class="price__unit">đ</span></div>
+                                        <div class="price__new">{{item.Gia}} <span class="price__unit">đ</span></div>
+                                    </div>
+                                </div>
+                                <div class="product__sale">
+                                    <span class="product__sale-percent">22%</span>
+                                    <span class="product__sale-text">Giảm</span>
+                                </div>
+                                <a href="/SanPham/Chitiet/?MaSP={{item.MaSP}}" class="viewDetail">Xem chi tiết</a>
+                                <p class="addToCart" ng-click="addToCart(item)"> Thêm vào giỏ</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pagination">
+                    <ul class="pagination__list">
+                        <li class="#">
+                            <a href="listFilm.html" class="pagination__link">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        <li class="pagination__item active" >
+                            <a href="/SanPham/CuaHang" class="pagination__link">1</a>
+                        </li>
+                        <li class="pagination__item">
+                            <a href="/SanPham/Trang2" class="pagination__link" style="background-color: rgb(127,173,57)">2</a>
+                        </li>
+                        <li class="pagination__item">
+                            <a href="/SanPham/Trang3" class="pagination__link">3</a>
+                        </li>
+
+
+                        <li class="pagination__item">
+                            <a href="#" class="pagination__link">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
